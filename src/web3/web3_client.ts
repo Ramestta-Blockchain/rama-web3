@@ -1,9 +1,8 @@
 import { Web3Contract } from "./eth_contract";
 import Web3 from "web3";
-import { Transaction } from "web3/eth/types";
 import { AbstractProvider } from "web3-core";
-import { doNothing, TransactionWriteResult } from "../helpers";
-import { BaseWeb3Client, IBlockWithTransaction, IJsonRpcRequestPayload, IJsonRpcResponse, ITransactionRequestConfig, ITransactionData, ITransactionReceipt, Logger, ERROR_TYPE, IError } from "@ramestta/ramajs";
+import {TransactionWriteResult } from "../helpers";
+import { BaseWeb3Client, IBlockWithTransaction, IJsonRpcRequestPayload, IJsonRpcResponse, ITransactionRequestConfig, ITransactionReceipt, Logger, IError } from "@ramestta/ramajs";
 import { ramaTxRequestConfigToWeb3, web3ReceiptToRamaReceipt, web3TxToRamaTx } from "../utils";
 
 export class Web3Client extends BaseWeb3Client {
@@ -49,7 +48,7 @@ export class Web3Client extends BaseWeb3Client {
         return this.web3_.eth.getTransactionCount(address, blockNumber);
     }
 
-    getAccounts() {
+    getAccounts():any {
         return this.web3_.eth.getAccounts();
     }
 
@@ -84,7 +83,7 @@ export class Web3Client extends BaseWeb3Client {
         return (this.web3_.eth.getBlock(blockHashOrBlockNumber) as any);
     }
 
-    getBalance(address) {
+    getBalance(address:any):any {
         return this.web3_.eth.getBalance(address);
     }
 
@@ -107,7 +106,7 @@ export class Web3Client extends BaseWeb3Client {
         });
     }
 
-    signTypedData(signer, typedData) {
+    signTypedData(signer, typedData): any {
         return this.sendRPCRequest({
             jsonrpc: '2.0',
             method: 'eth_signTypedData_v4',
